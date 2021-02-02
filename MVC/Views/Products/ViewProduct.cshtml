@@ -1,0 +1,143 @@
+﻿@model ProductViewModel
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{ Layout = null; }
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Saurabh" content="Shopping Cart">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+    <link rel="stylesheet" href="~/css/NavBarSession.css" />
+    <link rel="stylesheet" href="~/css/ViewProdStyleSheet.css" />
+</head>
+<body>
+
+    <nav class="site-header sticky-top py-3">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2" asp-controller="Products" asp-action="Index">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+            </a>
+            <a class="py-2 d-none d-md-inline-block" href="#"><b>@HttpContextAccessor.HttpContext.Session.GetString("customerName")</b></a>
+            <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
+            <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
+            <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
+            <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
+            <a class="py-2 d-none d-md-inline-block" asp-controller="Account" asp-action="Logout"><b>Logout</b></a>
+            <a class="py-2 d-none d-md-inline-block"  asp-controller="Carts" asp-action="Index"><i class="fa fa-shopping-cart fa-2x"></i></a>
+            <form class="form-inline my-2 my-md-0" asp-controller="Products" asp-action="SerachProductByName">
+
+                <div class="sa-search-box">
+                    <input class="search-item" type="text" placeholder="Search" name="item">
+                    <button class="btn btn-warning" type="submit" style="position:absolute; left:12rem">
+                        <i class="fa fa-search fa-2x"></i>
+                    </button>
+
+                </div>
+
+            </form>
+        </div>
+    </nav>
+
+    <div class="single_product">
+            <div class="container-fluid" style=" background-color: #fff; padding: 3rem;">
+                <div class="row">
+
+                    <div class="col-lg-4 order-lg-1 order-1">
+                        <div class="image_selected"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1565713229/single_4.jpg" alt=""></div>
+                    </div>
+                    <div class="col-lg-6 order-3">
+                        <div class="product_description">
+                            <div class="product_name">@Model.product.Name</div>
+                            <div class="product-rating"><span class="badge badge-success"><i class="fa fa-star"></i> @Model.product.Rating</span> <span class="rating-review">35 Ratings & 45 Reviews</span></div>
+                            <div> <span class="product_price">₹ @Model.product.Price</span>  </div>
+
+                            <hr class="singleline">
+                            <div> <span class="product_info">EMI starts at ₹ 2,000. No Cost EMI Available<span><br><span class="product_info">7 Days easy replacement policy<span><br> <span class="product_info">7 Days easy return policy<span><br> <span class="product_info">In Stock: 25 units left<span> </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="br-dashed">
+                                            <div class="row">
+                                                <div class="col-md-3 col-xs-3"> <img src="https://img.icons8.com/color/48/000000/price-tag.png"> </div>
+                                                <div class="col-md-9 col-xs-9">
+                                                    <div class="pr-info"> <span class="break-all">Get 5% instant discount + 10X rewards on instant payments</span> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7"> </div>
+                                </div>
+                            </div>
+                            <hr class="singleline">
+                            <div class="order_info d-flex flex-row">
+
+                            </div>
+                            <form asp-action="ViewProduct">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group" style="width:10rem">
+                                    <label asp-for="ZipCode" class="control-label">Pincode for Delivery</label>
+                                    <input asp-for="ZipCode" class="form-control" type="number" />
+                                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="width:10rem">
+                                    <label asp-for="DeliveryDate" class="control-label">Expected Delivery Date</label>
+                                    <input asp-for="DeliveryDate" class="form-control" readonly />
+                                    <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="width:5rem">
+                                    <label asp-for="Quantity" class="control-label"></label>
+                                    <input type="number" min="1" asp-for="Quantity" class="form-control" />
+                                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                                </div>
+                                <hr />
+                                @if (Model.Vendors.Count() != 0)
+                                 {
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Vendor Name</th>
+                                        <th scope="col">Vendor Rating</th>
+                                        <th scope="col">Delivery Charges</th>
+                                        <th scope="col">Assign</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Vendors)
+                                    {
+
+                            <tr>
+                                <th scope="row">@item.Name</th>
+                                <td>@item.Rating</td>
+                                <td>@item.DeliveryCharge</td>
+                                <td>@Html.RadioButton("VendorId", @item.VendorId)</td>
+                                <td>@Html.ValidationMessageFor(x=>x.VendorId)</td>
+                            </tr>}
+
+                                </tbody>
+                            </table>
+                                    <div class="form-group">
+                                        <input type="submit" value="Add To Cart" class="btn btn-primary" />
+                                    </div> 
+                                  }
+
+                                else
+                                {
+                                    <div class="form-group">
+                                        <input type="submit" value="Add To WishList" class="btn btn-primary" />
+                                    </div>
+                                }
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>   
+
+</body>
+</html>
