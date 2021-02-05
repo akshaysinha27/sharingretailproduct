@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
             return await ProductRepository.GetAllProducts();
         }
 
-
+        [Route("GetProductsByName/{name}")]
         [HttpGet("{name}")]
         public async Task<ActionResult<IEnumerable<Products>>> SearchProductByName(string name)
         {
@@ -41,8 +41,19 @@ namespace WebAPI.Controllers
             }
             return Ok(products);
         }
-               
-       
+
+        [Route("GetProductsByCategory/{name}")]
+        [HttpGet("{name}")]
+        public async Task<ActionResult<IEnumerable<Products>>> SearchProductByCategory(string name)
+        {
+            var products = await ProductRepository.GetProductByCategory(name);
+            if (products == null)
+            {
+                return BadRequest("Products Not Found, Please Try Again");
+            }
+            return Ok(products);
+        }
+
         [HttpPost]
         public IActionResult AddProductRating(int id, [FromBody] Products products)
         {

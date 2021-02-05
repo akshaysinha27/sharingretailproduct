@@ -31,7 +31,7 @@
             <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
             <a class="py-2 d-none d-md-inline-block" asp-controller="Account" asp-action="Logout"><b>Logout</b></a>
             <a class="py-2 d-none d-md-inline-block"  asp-controller="Carts" asp-action="Index"><i class="fa fa-shopping-cart fa-2x"></i></a>
-            <form class="form-inline my-2 my-md-0" asp-controller="Products" asp-action="SerachProductByName">
+            <form class="form-inline my-2 my-md-0" asp-controller="Products" asp-action="SearchProductByName">
 
                 <div class="sa-search-box">
                     <input class="search-item" type="text" placeholder="Search" name="item">
@@ -77,33 +77,36 @@
         <tbody>
             @foreach (var item in Model)
             {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.CartId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProductId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Quantity)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Price)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ZipCode)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DeliveryDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.VendorId)
-    </td>
-    <td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CartId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZipCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VendorId)
+                </td>
+                <td>
 
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-    </td>
-</tr>
+                <td>
+                    <a class="btn btn-success mt-3" href="@Url.Action("DeleteFromCart", "Carts", new { id = item.CartId })">Delete</a> |
+                    <a class="btn btn-success mt-3" href="@Url.Action("IncreaseCartItem", "Carts", new { id = item.CartId })">Add Quantity</a> |
+                    <a class="btn btn-success mt-3" href="@Url.Action("DecreaseFromCart", "Carts", new { id = item.CartId })">Reduce Quantity</a>
+                </td>
+            </tr>
 }
         </tbody>
     </table>
@@ -116,5 +119,5 @@
 
 
 
-    @Html.ActionLink("Proceed To Buy", "Checkout", "Cart", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Proceed To Buy", "Checkout", "Carts", null, new { @class = "btn btn-primary" })
 </body>

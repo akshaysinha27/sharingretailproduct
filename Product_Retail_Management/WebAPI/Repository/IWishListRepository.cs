@@ -10,6 +10,7 @@ namespace WebAPI.Repository
     {
         Task<IEnumerable<WishLists>> GetAllWishlistItems();
         Task<WishLists> AddToWishlist(WishLists item);
-        Task<WishLists> DeleteFromWishlist(WishLists item);
+        Task<WishLists> DeleteFromWishlist(int id);
+        Task<WishLists> DecreaseQuantity(int id);
     }
 }

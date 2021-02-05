@@ -23,15 +23,48 @@ namespace WebAPI.Repository
         }
 
 
-        public Task DeleteFromCart(Carts cart)
-        {
-            throw new NotImplementedException();
-        }
+       
 
 
         public async Task<IEnumerable<Carts>> GetAllCartItems()
         {
             return await context.Carts.ToListAsync();
+        }
+
+        public async Task<Carts> DecreaseQuantity(int id)
+        {
+            Carts cart = await context.Carts.FindAsync(id);
+            cart.Quantity--;
+            context.Carts.Update(cart);
+            await context.SaveChangesAsync();
+            return cart;
+        }
+
+
+
+        public async Task<bool> DeleteAllCartItems()
+        {
+            context.Carts.RemoveRange(context.Carts);
+            await context.SaveChangesAsync();
+            return true;
+        }
+
+
+
+        public async Task<Carts> DeleteFromCart(int id)
+        {
+            Carts cart = await context.Carts.FindAsync(id);
+            context.Carts.Remove(cart);
+            await context.SaveChangesAsync();
+            return cart;
+        }
+        public async Task<Carts> IncreaseQuantity(int id)
+        {
+            Carts cart = await context.Carts.FindAsync(id);
+            cart.Quantity++;
+            context.Carts.Update(cart);
+            await context.SaveChangesAsync();
+            return cart;
         }
     }
 }

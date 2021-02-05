@@ -36,6 +36,7 @@ namespace WebAPI
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IVendorRepository, VendorRepository>();
+            services.AddTransient<IVendorStockRepository, VendorStockRepository>();
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<IWishListRepository, WishListRepository>();
 

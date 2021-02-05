@@ -10,6 +10,7 @@ namespace WebAPI.Repository
     {
         Task<IEnumerable<Products>> GetAllProducts();
         Task<IEnumerable<Products>> GetProductByName(string name);
+        Task<IEnumerable<Products>> GetProductByCategory(string name);
         Products GetProductById(int id);
         string AddProductRating(int id, Products products);
 

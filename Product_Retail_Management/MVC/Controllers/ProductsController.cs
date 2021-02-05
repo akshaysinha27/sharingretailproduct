@@ -41,6 +41,7 @@ namespace MVC.Controllers
         public async Task<IActionResult> ViewProduct(int id)
         {
             Products getProduct = new Products();
+            int productInStock = 0;
             IEnumerable<Vendors> vendorList = new List<Vendors>();
             using (var httpClient = new HttpClient())
             {
@@ -53,6 +54,13 @@ namespace MVC.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     vendorList = JsonConvert.DeserializeObject<IEnumerable<Vendors>>(apiResponse);
+                }
+                using (var response = await httpClient.GetAsync("https://localhost:44307/api/vendorstocks/" + id))
+                {
+                    string apiResonse = response.Content.ReadAsStringAsync().Result;
+                    productInStock = JsonConvert.DeserializeObject<int>(apiResonse);
+                    //pv.ProductInStock = httpResponse.Content.ReadAsAsync<int>().Result;
+
                 }
             }
             TempData["ProductId"] = id;
@@ -68,27 +76,44 @@ namespace MVC.Controllers
             }
             else
             {
+              
                 productModel.product = getProduct;
                 productModel.DeliveryDate = DateTime.UtcNow.AddDays(12);
                 productModel.Vendors = vendorList;
+                productModel.ProductInStock = productInStock;
             }
             return View(productModel);
         }
 
-        public async Task<IActionResult> SerachProductByName(string item)
+        public async Task<IActionResult> SearchProductByName(string item)
         {
             IEnumerable<Products> prod = new List<Products>();
-              using (var httpClient = new HttpClient())
+            using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44307/api/products/" + item))
+                using (var response = await httpClient.GetAsync("https://localhost:44307/api/products/GetProductsByName/" + item))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     prod = JsonConvert.DeserializeObject<IEnumerable<Products>>(apiResponse);
                 }
             }
-            return View("Index",prod);
+            return View("Index", prod);
         }
 
+        //[Route("")]
+        //[HttpGet("{name}")]
+        public async Task<IActionResult> SearchProductByCategory(string name)
+        {
+            IEnumerable<Products> prod = new List<Products>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44307/api/products/GetProductsByCategory/" + name))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    prod = JsonConvert.DeserializeObject<IEnumerable<Products>>(apiResponse);
+                }
+            }
+            return View("Index", prod);
+        }
 
 
         [HttpPost]
@@ -136,7 +161,7 @@ namespace MVC.Controllers
                     ProductId = productId,
                     Quantity = model.Quantity,
                     DateAdded = DateTime.UtcNow,
-                    CustomerId = HttpContext.Session.GetInt32("customerId")
+                    CustomerId = (int) HttpContext.Session.GetInt32("customerId")
                 };
                 WishLists returnedItem = new WishLists();
                 StringContent content = new StringContent(JsonConvert.SerializeObject(wishlistItem), Encoding.UTF8, "application/json");

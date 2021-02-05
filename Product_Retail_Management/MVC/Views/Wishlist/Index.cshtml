@@ -72,30 +72,29 @@
         <tbody>
             @foreach (var item in Model)
             {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Id)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.VendorId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProductId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Quantity)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DateAdded)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CustomerId)
-    </td>
-    <td>
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) |
-       
-    </td>
-</tr>}
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VendorId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateAdded)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    <a class="btn btn-success mt-3" href="@Url.Action("DeleteFromWishlist", "Wishlist", new { id = item.Id })">Delete</a>
+                </td>
+            </tr>}
         </tbody>
     </table>
 </body>

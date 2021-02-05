@@ -79,7 +79,7 @@ namespace WebAPI.Models.Data
                        ProductId = 7,
                        Name = "Samsung Galaxy S21 Ultra (Phantom Black, 256 GB)  (12 GB RAM)",
                        Price = 105999,
-                       Description = "Mobile",
+                       Description = "Electronics",
                        ImageName = ImageToBinary(@"src\Image\galaxys21.jpg"),
                        Rating = 4.7
                    },
@@ -115,7 +115,7 @@ namespace WebAPI.Models.Data
                        ProductId = 11,
                        Name = "Onion 1 kg",
                        Price = 16,
-                       Description = "vegetable",
+                       Description = "vegetables",
                        ImageName = ImageToBinary(@"src\Image\onion.jpg"),
                        Rating = 4.1
                    },
@@ -124,7 +124,7 @@ namespace WebAPI.Models.Data
                        ProductId = 12,
                        Name = "Carrot 500 g",
                        Price = 25,
-                       Description = "vegetable",
+                       Description = "vegetables",
                        ImageName = ImageToBinary(@"src\Image\carrot.jpg"),
                        Rating = 4.1
                    },
@@ -133,7 +133,7 @@ namespace WebAPI.Models.Data
                        ProductId = 13,
                        Name = "Tomato - Hybrid 1 kg",
                        Price = 23,
-                       Description = "vegetable",
+                       Description = "vegetables",
                        ImageName = ImageToBinary(@"src\Image\tomato.jpg"),
                        Rating = 4.1
                    },
@@ -142,7 +142,7 @@ namespace WebAPI.Models.Data
                        ProductId = 14,
                        Name = "Potato 1 kg",
                        Price = 30,
-                       Description = "vegetable",
+                       Description = "vegetables",
                        ImageName = ImageToBinary(@"src\Image\potato.jpg"),
                        Rating = 4.1
                    },
@@ -151,7 +151,7 @@ namespace WebAPI.Models.Data
                        ProductId = 15,
                        Name = "Cabbage 1 kg",
                        Price = 35,
-                       Description = "vegetable",
+                       Description = "vegetables",
                        ImageName = ImageToBinary(@"src\Image\cabbage.jpg"),
                        Rating = 4.1
                    },

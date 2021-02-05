@@ -22,11 +22,23 @@ namespace WebAPI.Repository
             return item;
         }
 
-
-
-        public Task<WishLists> DeleteFromWishlist(WishLists item)
+        public async Task<WishLists> DeleteFromWishlist(int id)
         {
-            throw new NotImplementedException();
+            WishLists wishlist = await context.WishLists.FindAsync(id);
+            context.WishLists.Remove(wishlist);
+            await context.SaveChangesAsync();
+            return wishlist;
+        }
+
+
+
+        public async Task<WishLists> DecreaseQuantity(int id)
+        {
+            WishLists wishlist = await context.WishLists.FindAsync(id);
+            wishlist.Quantity--;
+            context.WishLists.Update(wishlist);
+            await context.SaveChangesAsync();
+            return wishlist;
         }
 
 

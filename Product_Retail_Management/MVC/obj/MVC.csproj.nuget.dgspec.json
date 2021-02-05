@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\870126\\Downloads\\Product_Retail_Management (2)\\Product_Retail_Management\\MVC\\MVC.csproj": {}
+    "C:\\Users\\870126\\source\\repos\\akshaysinha27\\sharingretailproduct\\Product_Retail_Management\\MVC\\MVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\870126\\Downloads\\Product_Retail_Management (2)\\Product_Retail_Management\\MVC\\MVC.csproj": {
+    "C:\\Users\\870126\\source\\repos\\akshaysinha27\\sharingretailproduct\\Product_Retail_Management\\MVC\\MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\870126\\Downloads\\Product_Retail_Management (2)\\Product_Retail_Management\\MVC\\MVC.csproj",
+        "projectUniqueName": "C:\\Users\\870126\\source\\repos\\akshaysinha27\\sharingretailproduct\\Product_Retail_Management\\MVC\\MVC.csproj",
         "projectName": "MVC",
-        "projectPath": "C:\\Users\\870126\\Downloads\\Product_Retail_Management (2)\\Product_Retail_Management\\MVC\\MVC.csproj",
+        "projectPath": "C:\\Users\\870126\\source\\repos\\akshaysinha27\\sharingretailproduct\\Product_Retail_Management\\MVC\\MVC.csproj",
         "packagesPath": "C:\\Users\\870126\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\870126\\Downloads\\Product_Retail_Management (2)\\Product_Retail_Management\\MVC\\obj\\",
+        "outputPath": "C:\\Users\\870126\\source\\repos\\akshaysinha27\\sharingretailproduct\\Product_Retail_Management\\MVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\870126\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -57,6 +57,10 @@
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
               "version": "[3.1.10, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

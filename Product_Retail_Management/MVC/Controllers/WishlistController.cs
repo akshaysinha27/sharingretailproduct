@@ -26,6 +26,24 @@ namespace MVC.Controllers
             }
             return View(items);
         }
+
+        public async Task<IActionResult> DeleteFromWishlist(int id)
+        {
+            WishLists deletedwishlist;
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.DeleteAsync("https://localhost:44307/api/wishlist/"+id.ToString()))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    deletedwishlist = JsonConvert.DeserializeObject<WishLists>(apiResponse);
+                }
+            }
+            //using (HttpResponseMessage httpResponse = GlobalVariables.webApiClient.DeleteAsync("Wishlists/" + id.ToString()).Result)
+            //{
+            //    deletedwishlist = httpResponse.Content.ReadAsAsync<Wishlist>().Result;
+            //}
+            return RedirectToAction("Index");
+        }
     }
        
 }

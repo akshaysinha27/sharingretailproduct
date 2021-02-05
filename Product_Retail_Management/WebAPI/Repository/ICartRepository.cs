@@ -10,6 +10,9 @@ namespace WebAPI.Repository
     {
         Task<IEnumerable<Carts>> GetAllCartItems();
         Task<Carts> AddToCart(Carts cart);
-        Task DeleteFromCart(Carts cart);
+        Task<Carts> DeleteFromCart(int id);
+        Task<bool> DeleteAllCartItems();
+        Task<Carts> IncreaseQuantity(int id);
+        Task<Carts> DecreaseQuantity(int id);
     }
 }

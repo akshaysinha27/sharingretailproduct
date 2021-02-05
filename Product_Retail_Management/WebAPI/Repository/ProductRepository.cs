@@ -30,7 +30,13 @@ namespace WebAPI.Repository
 
         public async Task<IEnumerable<Products>> GetProductByName(string name)
         {         
-            var List = await _context.Products.Where(p => p.Name.Contains(name)).ToListAsync();
+            var List = await _context.Products.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToListAsync();
+            return List;
+        }
+
+        public async Task<IEnumerable<Products>> GetProductByCategory(string name)
+        {
+            var List = await _context.Products.Where(p => p.Description.Contains(name, StringComparison.OrdinalIgnoreCase)).ToListAsync();
             return List;
         }
 

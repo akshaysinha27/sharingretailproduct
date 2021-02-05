@@ -12,5 +12,8 @@ namespace WebAPI.Models
         public int VendorId { get; set; }
         public int StockInHand { get; set; }
         public DateTime ExpectedDate { get; set; }
+        public virtual Products Product { get; set; }
+        public virtual Vendors Vendor { get; set; }
+
     }
 }

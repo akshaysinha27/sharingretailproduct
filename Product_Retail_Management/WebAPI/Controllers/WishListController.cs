@@ -39,5 +39,25 @@ namespace WebAPI.Controllers
                 return BadRequest("Cart not added");
             return Ok(addedItem);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<WishLists>> DeleteItemFromWishlist(int id)
+        {
+            var deletedItem = await repository.DeleteFromWishlist(id);
+            if (deletedItem == null)
+                return BadRequest("Wishlist Item Not Deleted!");
+
+
+
+            return Ok(deletedItem);
+        }
+
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<WishLists>> DecreaseQuantity(int id)
+        {
+            return Ok(await repository.DecreaseQuantity(id));
+        }
     }
 }

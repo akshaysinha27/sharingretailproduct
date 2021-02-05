@@ -39,5 +39,40 @@ namespace WebAPI.Controllers
                 return BadRequest("Cart not added");
             return Ok(addedCart);
         }
+
+        [Route("IncreaseItemQuantity/{id}")]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Carts>> IncreaseItem(int id)
+        {
+            return Ok(await repository.IncreaseQuantity(id));
+        }
+
+
+
+        [Route("DecreaseItemQuantity/{id}")]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Carts>> DecreaseItem(int id)
+        {
+            return Ok(await repository.DecreaseQuantity(id));
+
+
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Carts>> DeleteItemFromCart(int id)
+        {
+            Carts deletedCart = await repository.DeleteFromCart(id);
+            if (deletedCart == null)
+                return BadRequest("Cart Not Deleted!");
+            return Ok(deletedCart);
+        }
+
+
+
+        [HttpDelete]
+        public async Task<ActionResult<bool>> DeleteAllCartItems()
+        {
+            return Ok(await repository.DeleteAllCartItems());
+        }
     }
 }

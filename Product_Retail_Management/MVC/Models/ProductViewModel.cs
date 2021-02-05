@@ -16,5 +16,7 @@ namespace MVC.Models
         public int ZipCode { get; set; }
         [Required(ErrorMessage = "Select Vendor!")]
         public int VendorId { get; set; }
+
+        public int ProductInStock { get; set; }
     }
 }
